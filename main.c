@@ -18,22 +18,47 @@ int main(int argc, char * argv[]) {
   char * line = s; //the complete line stored as a pointer
   int i=0;//index of args we are up to
 
-  while (token != NULL) {
+  while (line != NULL) {
     token = strsep(&line, " ");
     args[i] = token;
+    //printf("%d: [%s]\n",i,token);
     i++;
   }
+  //remove escape key from last index
+  args[i-1] = strsep(&(args[i-1]), "\n");
+  args[i] = NULL;
+  // char line2[100] = "woah-this-is-cool";
+  // char *s1 = line2;
+  // printf("[%s]\n", strsep( &s1, "-" ));
+  // printf("[%s]\n", s1);
+  //
+  // printf("[%s]\n", strsep( &s1, "-" ));
+  // printf("[%s]\n", s1);
+  //
+  // printf("[%s]\n", strsep( &s1, "-" ));
+  // printf("[%s]\n", s1);
+  //
+  // printf("[%s]\n", strsep( &s1, "-" ));
+  // printf("[%s]\n", s1);
 
-  printf("%s\n", s);
-
-  //print each index in args:
+  // printf("%s\n", s);
+  // printf("%s\n", args[0]);
+  // //print each index in args:
   int c = 0;
+  printf("[");
   for (c=0;c<i;c++) {
-    printf("[%s]\n", args[c]);
+    printf("'%s', ", args[c]);
   }
-  //remove escape key from last arg
-  args[i-1] = 
+  printf("]\n");
+
 
   execvp(args[0], args);
+
+  // //testing:
+  // char * a2[3];
+  // a2[0] = "ls";
+  // a2[1] = "-la";
+  // a2[2] = NULL;
+  // execvp("ls", a2);
 
 }
